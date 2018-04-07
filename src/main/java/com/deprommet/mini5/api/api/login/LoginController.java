@@ -12,12 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 @CrossOrigin("*")
 public class LoginController {
 	@PostMapping("/login")
-	public String login(HttpServletResponse response,@RequestBody String nickname) {
+	public String login(HttpServletResponse response, @RequestBody String nickname) {
 		Cookie cookie = new Cookie("nickname",nickname);
-
 		response.addCookie(cookie);
-		
 		return nickname;
-		
 	}
 }
