@@ -1,4 +1,4 @@
-package com.deprommet.mini5.api.api;
+package com.deprommet.mini5.api.api.rank;
 
 import com.deprommet.mini5.api.naver.NaverRealtimeRankFinder;
 import org.slf4j.Logger;
