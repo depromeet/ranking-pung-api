@@ -18,11 +18,11 @@ public class BoardController {
 	public void addBoardItem(@RequestBody BoardItem boardItem) {
 		if (!boardMap.containsKey(boardItem.getKeyWord())) {
 			ArrayList<BoardItem> boardItemList = new ArrayList<>();
-			boardItem.setNickname(boardItem.getKeyWord());
+			boardItem.setNickname(boardItem.getNickname());
 			boardItemList.add(boardItem);
 			boardMap.put(boardItem.getKeyWord(), boardItemList);
 		} else {
-			boardItem.setNickname(boardItem.getKeyWord());
+			boardItem.setNickname(boardItem.getNickname());
 			boardMap.get(boardItem.getKeyWord()).add(boardItem);
 		}
 	}
