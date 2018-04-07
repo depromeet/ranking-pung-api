@@ -1,4 +1,4 @@
-package com.deprommet.mini5.api.login;
+package com.deprommet.mini5.api.api.login;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
