@@ -1,31 +1,22 @@
 package com.deprommet.mini5.api.api.board;
 
+import com.deprommet.mini5.api.dto.BoardItem;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.Cookie;
-
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.deprommet.mini5.api.dto.BoardItem;
-
-import io.swagger.annotations.ApiModelProperty;
-
 @RestController
+@CrossOrigin("*")
 public class BoardController {
 
 	private static HashMap<String, ArrayList<BoardItem>> boardMap = new HashMap<>();
 
 	@PostMapping("/board/item")
-	public void addBoardItem(@RequestBody BoardItem boardItem, @CookieValue(value="nickname", defaultValue="알수없음") String nickname){
-		if (!boardMap.containsKey(boardItem.getKeyWord())){
+	public void addBoardItem(@RequestBody BoardItem boardItem, @CookieValue(value = "nickname", defaultValue = "알수없음") String nickname) {
+		if (!boardMap.containsKey(boardItem.getKeyWord())) {
 			ArrayList<BoardItem> boardItemList = new ArrayList<>();
 			boardItem.setNickname(nickname);
 			boardItemList.add(boardItem);
@@ -38,8 +29,8 @@ public class BoardController {
 	}
 
 	@GetMapping("/board/{keyWord}/list")
-	public List<BoardItem> getBoardList(@PathVariable String keyWord){
-		if (boardMap.containsKey(keyWord)){
+	public List<BoardItem> getBoardList(@PathVariable String keyWord) {
+		if (boardMap.containsKey(keyWord)) {
 			return boardMap.get(keyWord);
 		} else {
 			return Collections.emptyList();
