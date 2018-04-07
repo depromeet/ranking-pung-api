@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
-public class NaverRealtimeRankFinder {
+public class NaverRankFinder {
 	private static final String NAVER_URL = "https://www.naver.com";
 	private static final String SELECT_RANK = ".ah_k";
 
@@ -34,6 +35,8 @@ public class NaverRealtimeRankFinder {
 			searchKeywordList.add(searchKeyword);
 		}
 
-		return searchKeywordList;
+		return searchKeywordList.stream()
+			.limit(20) // 중복으로 40개가 나오기 때문에 20까지의 limit를 추가한다.
+			.collect(Collectors.toList());
 	}
 }

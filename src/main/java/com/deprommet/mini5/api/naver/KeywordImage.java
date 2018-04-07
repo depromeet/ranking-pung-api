@@ -1,6 +1,6 @@
 package com.deprommet.mini5.api.naver;
 
-public class NaverImage {
+public class KeywordImage {
 	private String imageUrl;
 
 	public String getImageUrl() {
