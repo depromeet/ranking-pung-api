@@ -15,15 +15,14 @@ public class BoardController {
 	private static HashMap<String, ArrayList<BoardItem>> boardMap = new HashMap<>();
 
 	@PostMapping("/board/item")
-	public void addBoardItem(@RequestBody BoardItem boardItem, @CookieValue(value = "nickname", defaultValue = "알수없음") String nickname) {
+	public void addBoardItem(@RequestBody BoardItem boardItem) {
 		if (!boardMap.containsKey(boardItem.getKeyWord())) {
 			ArrayList<BoardItem> boardItemList = new ArrayList<>();
-			boardItem.setNickname(nickname);
+			boardItem.setNickname(boardItem.getKeyWord());
 			boardItemList.add(boardItem);
 			boardMap.put(boardItem.getKeyWord(), boardItemList);
-			return;
 		} else {
-			boardItem.setNickname(nickname);
+			boardItem.setNickname(boardItem.getKeyWord());
 			boardMap.get(boardItem.getKeyWord()).add(boardItem);
 		}
 	}

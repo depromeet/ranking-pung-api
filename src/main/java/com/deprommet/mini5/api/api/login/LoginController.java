@@ -8,13 +8,30 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+@Deprecated
 @RestController
 @CrossOrigin("*")
 public class LoginController {
+	@Deprecated
 	@PostMapping("/login")
-	public String login(HttpServletResponse response, @RequestBody String nickname) {
-		Cookie cookie = new Cookie("nickname",nickname);
+	public String login(HttpServletResponse response, @RequestBody NickNameDto nickNameDto) {
+		Cookie cookie = new Cookie("nickname", nickNameDto.getNickname());
 		response.addCookie(cookie);
-		return nickname;
+		return nickNameDto.getNickname();
+	}
+
+	private static class NickNameDto {
+		private String nickname;
+
+		public NickNameDto() {
+		}
+
+		public String getNickname() {
+			return nickname;
+		}
+
+		public void setNickname(String nickname) {
+			this.nickname = nickname;
+		}
 	}
 }
