@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
@@ -24,7 +25,11 @@ public class RankController {
 	@GetMapping("/rank/naver")
 	public List<SearchKeyword> getRankFromNaver() {
 		try {
-			return naverRealtimeRankFinder.findRankKeyword();
+			return naverRealtimeRankFinder.findRankKeyword()
+				.stream()
+				.limit(20)
+				.collect(Collectors.toList());
+
 		} catch (IOException e) {
 			log.warn("Can not find to get nave rank");
 			return Collections.emptyList();
