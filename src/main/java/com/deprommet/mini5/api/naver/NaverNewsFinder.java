@@ -10,7 +10,7 @@ import java.net.URLEncoder;
 
 @Service
 public class NaverNewsFinder {
-	private static final String NAVER_NEWS_POSTFIX_URL = "https://search.naver.com/search.naver?where=news&sm=tab_jum&query=";
+	private static final String NAVER_NEWS_POSTFIX_URL = "https://search.naver.com/search.naver?where=news&query=";
 	private static final String DUMMY_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36";
 
 	public KeywordNews findNewsByKeyword(String keyword) throws IOException {
@@ -28,8 +28,9 @@ public class NaverNewsFinder {
 			.replaceAll("</strong>", "")
 			.replaceAll("캡처&copy;", "")
 			.replaceAll("\n", "")
-			.replaceAll(" &nbsp;", "")
-			.replaceAll(";&quot;", "")
+            .replaceAll(";", "")
+            .replaceAll("&nbsp", "")
+			.replaceAll("&quot", "")
 			.replaceAll("&nbsp", "");
 
 		final KeywordNews keywordNews = new KeywordNews();
