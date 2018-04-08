@@ -14,7 +14,7 @@ public class ImageController {
     @Autowired
     private NaverImageFinder naverImageFinder;
 
-    @GetMapping("/news/image/{keyword}")
+    @GetMapping("/image/naver/{keyword}")
     public KeywordImage findByKeyword(@PathVariable String keyword) throws IOException {
         return naverImageFinder.findImageUrlByKeyword(keyword);
     }
