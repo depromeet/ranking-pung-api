@@ -1,4 +1,4 @@
-package com.deprommet.mini5.api.naver;
+package com.deprommet.mini5.api.naver.news;
 
 public class KeywordNews {
 	private String title;

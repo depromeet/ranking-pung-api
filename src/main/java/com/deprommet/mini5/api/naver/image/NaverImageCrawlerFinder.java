@@ -1,4 +1,4 @@
-package com.deprommet.mini5.api.naver;
+package com.deprommet.mini5.api.naver.image;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.net.URLEncoder;
 
+@Deprecated
 @Service
-public class NaverImageFinder {
+public class NaverImageCrawlerFinder implements ImageFinder {
 	private static final String NAVER_SEARCH_IMAGE_POSTFIX_URL = "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=";
 	private static final String DUMMY_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36";
 
-	public KeywordImage findImageUrlByKeyword(String keyword) throws IOException {
+	@Override
+	public KeywordImage findByKeyword(String keyword) throws IOException {
 		final Document imgDocument = Jsoup.connect(
 			NAVER_SEARCH_IMAGE_POSTFIX_URL + URLEncoder.encode(keyword, "UTF-8"))
 			.userAgent(DUMMY_USER_AGENT)

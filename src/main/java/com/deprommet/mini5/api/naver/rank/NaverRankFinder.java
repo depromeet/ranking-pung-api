@@ -1,4 +1,4 @@
-package com.deprommet.mini5.api.naver;
+package com.deprommet.mini5.api.naver.rank;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,7 +18,7 @@ public class NaverRankFinder {
 	private static final String NAVER_URL = "https://www.naver.com";
 	private static final String SELECT_RANK = ".ah_k";
 
-	public List<SearchKeyword> findRankKeyword() throws IOException {
+	public List<RankKeyword> findRankKeyword() throws IOException {
 		final Document rankKeyword = Jsoup.connect(NAVER_URL).get();
 
 		if (Objects.isNull(rankKeyword)) {
@@ -26,16 +26,16 @@ public class NaverRankFinder {
 		}
 
 		final Elements elements = rankKeyword.select(SELECT_RANK);
-		final List<SearchKeyword> searchKeywordList = new ArrayList<>();
+		final List<RankKeyword> rankKeywordList = new ArrayList<>();
 
 		for (Element element : elements) {
 			final String keyword = element.html();
-			final SearchKeyword searchKeyword = new SearchKeyword();
+			final RankKeyword searchKeyword = new RankKeyword();
 			searchKeyword.setKeyword(keyword);
-			searchKeywordList.add(searchKeyword);
+			rankKeywordList.add(searchKeyword);
 		}
 
-		return searchKeywordList.stream()
+		return rankKeywordList.stream()
 			.limit(20) // 중복으로 40개가 나오기 때문에 20까지의 limit를 추가한다.
 			.collect(Collectors.toList());
 	}

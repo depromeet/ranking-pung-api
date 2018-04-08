@@ -1,7 +1,7 @@
-package com.deprommet.mini5.api.api.news;
+package com.deprommet.mini5.api.api.image;
 
-import com.deprommet.mini5.api.naver.news.KeywordNews;
-import com.deprommet.mini5.api.naver.news.NewsFinder;
+import com.deprommet.mini5.api.naver.image.ImageFinder;
+import com.deprommet.mini5.api.naver.image.KeywordImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin("*")
-public class NewsController {
+public class ImageController {
 	@Autowired
-	@Qualifier("naverApiNewsFinder")
-	private NewsFinder newsFinder;
+	@Qualifier("naverApiImageFinder")
+	private ImageFinder imageFinder;
 
-	@GetMapping("/news/naver/{keyword}")
-	public KeywordNews findByKeyword(@PathVariable String keyword) throws Exception {
-		return newsFinder.findByKeyword(keyword);
+	@GetMapping("/image/naver/{keyword}")
+	public KeywordImage getImageUrl(@PathVariable String keyword) throws Exception {
+		return imageFinder.findByKeyword(keyword);
 	}
 }

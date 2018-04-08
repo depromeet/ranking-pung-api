@@ -1,6 +1,6 @@
-package com.deprommet.mini5.api.naver;
+package com.deprommet.mini5.api.naver.rank;
 
-public class SearchKeyword {
+public class RankKeyword {
 	private String keyword;
 
 	public String getKeyword() {

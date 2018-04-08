@@ -1,7 +1,7 @@
 package com.deprommet.mini5.api.api.rank;
 
-import com.deprommet.mini5.api.naver.NaverRankFinder;
-import com.deprommet.mini5.api.naver.SearchKeyword;
+import com.deprommet.mini5.api.naver.rank.NaverRankFinder;
+import com.deprommet.mini5.api.naver.rank.RankKeyword;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class RankController {
 	private NaverRankFinder naverRankFinder;
 
 	@GetMapping("/rank/naver")
-	public List<SearchKeyword> getRankFromNaver() {
+	public List<RankKeyword> getRankFromNaver() {
 		try {
 			return naverRankFinder.findRankKeyword();
 
