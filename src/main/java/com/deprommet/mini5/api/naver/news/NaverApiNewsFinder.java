@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.Collections;
 
 @Service
@@ -31,11 +31,14 @@ public class NaverApiNewsFinder implements NewsFinder {
 
 		HttpEntity<String> entity = new HttpEntity<>(headers);
 
-		UriBuilder uriBuilder = UriComponentsBuilder.fromUriString(NAVER_NEWS_URL)
+		URI uri = UriComponentsBuilder.fromUriString(NAVER_NEWS_URL)
 			.queryParam("query", keyword)
-			.queryParam("display", "1");
+			.queryParam("display", "1")
+			.build()
+			.encode()
+			.toUri();
 
-		ResponseEntity<NaverNewsDto> respEntity = restTemplate.exchange(uriBuilder.build(), HttpMethod.GET, entity, NaverNewsDto.class);
+		ResponseEntity<NaverNewsDto> respEntity = restTemplate.exchange(uri, HttpMethod.GET, entity, NaverNewsDto.class);
 		NaverNewsDto naverNewsDto = respEntity.getBody();
 
 		KeywordNews keywordNews = new KeywordNews();

@@ -34,6 +34,7 @@ public class NaverApiImageFinder implements ImageFinder {
 			.queryParam("query", keyword)
 			.queryParam("display", "1")
 			.build()
+			.encode()
 			.toUri();
 
 		ResponseEntity<NaverImageDto> respEntity = restTemplate.exchange(uri, HttpMethod.GET, entity, NaverImageDto.class);
@@ -43,4 +44,5 @@ public class NaverApiImageFinder implements ImageFinder {
 		keywordImage.setImageUrl(naverNewsDto.getItems().get(0).getLink());
 		return keywordImage;
 	}
+
 }
