@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 
 @Deprecated
 @Service
@@ -19,6 +20,7 @@ public class NaverImageCrawlerFinder implements ImageFinder {
 		final Document imgDocument = Jsoup.connect(
 			NAVER_SEARCH_IMAGE_POSTFIX_URL + URLEncoder.encode(keyword, "UTF-8"))
 			.userAgent(DUMMY_USER_AGENT)
+			.cookies(new HashMap<>())
 			.get();
 
 		final Elements imgElements = imgDocument.select(".thumb > ._img");

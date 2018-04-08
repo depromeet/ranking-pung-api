@@ -30,8 +30,9 @@ public class NaverNewsCrawlerFinder implements NewsFinder {
 			.replaceAll("</strong>", "")
 			.replaceAll("캡처&copy;", "")
 			.replaceAll("\n", "")
-			.replaceAll(" &nbsp;", "")
-			.replaceAll(";&quot;", "")
+            .replaceAll(";", "")
+            .replaceAll("&nbsp", "")
+			.replaceAll("&quot", "")
 			.replaceAll("&nbsp", "");
 
 		final KeywordNews keywordNews = new KeywordNews();
