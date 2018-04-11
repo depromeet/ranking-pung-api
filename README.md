@@ -1,4 +1,4 @@
-# Ranking Pung Api Moudle
+# Ranking Pung Api module
 This project is api module for ranking-pung service. 
 
 - Realtime Rank
